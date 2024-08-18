@@ -1,0 +1,20 @@
+Xem danh sách các nhánh - branch
+$ git branch
+Tạo một nhánh mới
+$ git branch ALPHA_BRANCH
+Chuyển nhánh làm việc mới
+$ git checkout ALPHA_BRANCH
+Thực hiện commit trên nhánh mới
+Đang trên nhánh alpha thực hiện thay đổi và commit
+$ touch 3.txt                   #Tạo một file mới trong thư mục làm việc
+$ git add .                     #đưa vào stage
+$ git commit -m"C4"             #commit
+Xem lại lịch sử commit của nhánh alpha
+git log --pretty=oneline
+
+==============================================
+git add README.md
+git commit -m "Initialize SpringBoot Keycloak"
+git branch -M main
+git remote add origin https://github.com/QuyenBachHong/spring-boot-keycloak.git
+git push -u origin main
