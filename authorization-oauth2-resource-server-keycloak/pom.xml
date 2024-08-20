@@ -7,12 +7,11 @@
 		<artifactId>spring-boot-keycloak</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<packaging>jar</packaging>
-	<groupId>com.example</groupId>
-	<artifactId>authentication-oauth2-resource-server-keycloak</artifactId>
+	<groupId>me.quyen</groupId>
+	<artifactId>authorization-oauth2-resource-server-keycloak</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>authentication-oauth2-resource-server-keycloak</name>
-	<description>Demo project for Spring Boot authentication process using oauth2 resource server and Keycloak</description>
+	<name>authorization-oauth2-resource-server-keycloak</name>
+	<description>Demo project for Spring Boot __AUTHORIZATION__ process using oauth2 resource server and Keycloak</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -30,11 +29,11 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-spring-boot-starter -->
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
 		<dependency>
-			<groupId>org.keycloak</groupId>
-			<artifactId>keycloak-spring-boot-starter</artifactId>
-			<version>24.0.5</version>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.1.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-core -->
 		<dependency>
@@ -42,24 +41,11 @@
 			<artifactId>keycloak-core</artifactId>
 			<version>25.0.2</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-policy-enforcer -->
-<!--		<dependency>-->
-<!--			<groupId>org.keycloak</groupId>-->
-<!--			<artifactId>keycloak-policy-enforcer</artifactId>-->
-<!--			<version>25.0.2</version>-->
-<!--		</dependency>-->
-		<!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-admin-client -->
 		<dependency>
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-admin-client</artifactId>
 			<version>25.0.2</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>
-
 	</dependencies>
 
 	<build>

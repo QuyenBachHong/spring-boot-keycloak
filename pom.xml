@@ -16,6 +16,7 @@
 	<modules>
 		<module>authentication-oauth2-resource-server-keycloak</module>
 		<module>authentication-oauth2-resource-server-keycloak-opaque-token</module>
+		<module>authorization-oauth2-resource-server-keycloak</module>
 	</modules>
 	<description>Demo project for Spring Boot Keycloak Authentication-Authorization</description>
 	<url/>

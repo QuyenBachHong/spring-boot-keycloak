@@ -1,6 +1,7 @@
 package me.quyen.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,20 +16,23 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http)
-            throws Exception {
-        http.authorizeHttpRequests(auth ->
-                auth.requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-        ).headers(headers ->
-                        headers.frameOptions(Customizer.withDefaults()).disable()
-        ).csrf(csrf ->
-                csrf.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"))
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrfCustomizer ->
+                csrfCustomizer.ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"))
         );
-        http.authorizeHttpRequests(authorizedReq ->
-                authorizedReq.anyRequest().authenticated()
+        http.authorizeHttpRequests(authorizeHttpRequestsCustomizer -> authorizeHttpRequestsCustomizer
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+                .requestMatchers(AntPathRequestMatcher.antMatcher("/keycloak/**")).permitAll()
+
+        ).headers(headersCustomizer ->
+                headersCustomizer.frameOptions(Customizer.withDefaults()).disable()
+        );
+        http.authorizeHttpRequests(authorizeHttpRequestsCustomizer -> authorizeHttpRequestsCustomizer
+                .anyRequest().authenticated()
         ).oauth2ResourceServer(oauth2ResourceServerCustomizer ->
                 oauth2ResourceServerCustomizer.jwt(Customizer.withDefaults())
-        ).sessionManagement(sessionManagementCustomizer ->
+        );
+        http.sessionManagement(sessionManagementCustomizer ->
            sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         );
         return http.build();
